@@ -114,8 +114,7 @@ def runGame():
         FPSCLOCK.tick(FPS)
         if score == 6: # when score = to limit set 
             return
-        if score == -6:
-            return
+        
         
 
 def drawPressKeyMsg():
@@ -184,8 +183,8 @@ def getRandomLocation():
 
 def showGameOverScreen():
     gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
-    gameSurf = gameOverFont.render('Game', True, WHITE)
-    overSurf = gameOverFont.render('Over', True, WHITE)
+    gameSurf = gameOverFont.render('You', True, WHITE)#
+    overSurf = gameOverFont.render('Won', True, WHITE)#
     gameRect = gameSurf.get_rect()
     overRect = overSurf.get_rect()
     gameRect.midtop = (WINDOWWIDTH / 2, 10)
@@ -226,6 +225,11 @@ def drawApple(coord):
     y = coord['y'] * CELLSIZE
     appleRect = pygame.Rect(x, y, CELLSIZE, CELLSIZE)
     pygame.draw.rect(DISPLAYSURF, RED, appleRect)
+def drawApple(coord):
+    x = coord['x'] * CELLSIZE
+    y = coord['y'] * CELLSIZE
+    appleRect = pygame.Rect(x, y, CELLSIZE, CELLSIZE)
+    pygame.draw.rect(DISPLAYSURF, RED, appleRect)# might add 2nd apple
 
 
 def drawGrid():

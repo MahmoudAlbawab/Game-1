@@ -81,10 +81,12 @@ def runGame():
             score -= 1
             showGameOverScreen()
             
+            
         for wormBody in wormCoords[1:]:
             if wormBody['x'] == wormCoords[HEAD]['x'] and wormBody['y'] == wormCoords[HEAD]['y']:
                 score -= 1
                 showGameOverScreen()
+                
                 
                 
 
@@ -201,6 +203,8 @@ def showGameOverScreen():
     pygame.event.get()  #clear out event queue 
     while True:
         if checkForKeyPress():
+            showStartScreen()
+            runGame()
             return
 #KRT 12/06/2012 reduce processor loading in gameover screen.
         pygame.time.wait(100)
@@ -222,6 +226,8 @@ def showYouWonScreen():
     pygame.event.get()  #clear out event queue 
     while True:
         if checkForKeyPress():
+            showStartScreen()
+            runGame()
             return
 #KRT 12/06/2012 reduce processor loading in gameover screen.
         pygame.time.wait(100)

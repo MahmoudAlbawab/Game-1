@@ -79,10 +79,12 @@ def runGame():
         # check if the worm has hit itself or the edge
         if wormCoords[HEAD]['x'] == -1 or wormCoords[HEAD]['x'] == CELLWIDTH or wormCoords[HEAD]['y'] == -1 or wormCoords[HEAD]['y'] == CELLHEIGHT:
             score -= 1
+            showGameOverScreen()
             
         for wormBody in wormCoords[1:]:
             if wormBody['x'] == wormCoords[HEAD]['x'] and wormBody['y'] == wormCoords[HEAD]['y']:
                 score -= 1
+                showGameOverScreen()
                 
                 
 
@@ -113,7 +115,7 @@ def runGame():
         pygame.display.update()
         FPSCLOCK.tick(FPS)
         if score == 6: # when score = to limit set 
-            return
+            showYouWonScreen()
         
         
 
@@ -182,6 +184,27 @@ def getRandomLocation():
 
 
 def showGameOverScreen():
+    gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
+    gameSurf = gameOverFont.render('You', True, WHITE)#
+    overSurf = gameOverFont.render('Lost', True, WHITE)#
+    gameRect = gameSurf.get_rect()
+    overRect = overSurf.get_rect()
+    gameRect.midtop = (WINDOWWIDTH / 2, 10)
+    overRect.midtop = (WINDOWWIDTH / 2, gameRect.height + 10 + 25)
+
+    DISPLAYSURF.blit(gameSurf, gameRect)
+    DISPLAYSURF.blit(overSurf, overRect)
+    drawPressKeyMsg()
+    pygame.display.update()
+    pygame.time.wait(500)
+#KRT 14/06/2012 rewrite event detection to deal with mouse use
+    pygame.event.get()  #clear out event queue 
+    while True:
+        if checkForKeyPress():
+            return
+#KRT 12/06/2012 reduce processor loading in gameover screen.
+        pygame.time.wait(100)
+def showYouWonScreen():
     gameOverFont = pygame.font.Font('freesansbold.ttf', 150)
     gameSurf = gameOverFont.render('You', True, WHITE)#
     overSurf = gameOverFont.render('Won', True, WHITE)#

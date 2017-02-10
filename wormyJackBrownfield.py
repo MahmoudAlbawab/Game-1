@@ -48,7 +48,8 @@ def main():
         showGameOverScreen()
 
 def runGame():
-    score = 1 #
+    setDifficulty() '''Runs the program that sets how fast the Worm moves'''
+    score = 0
     # Set a random start point.
     startx = random.randint(5, CELLWIDTH - 6)
     starty = random.randint(5, CELLHEIGHT - 6)
@@ -86,6 +87,7 @@ def runGame():
             if wormBody['x'] == wormCoords[HEAD]['x'] and wormBody['y'] == wormCoords[HEAD]['y']:
                 score -= 1
                 showGameOverScreen()
+
                 
                 
                 
@@ -116,8 +118,7 @@ def runGame():
         drawScore(len(wormCoords) - 3)
         pygame.display.update()
         FPSCLOCK.tick(FPS)
-        if score == 6: # when score = to limit set 
-            showYouWonScreen()
+        
         
         
 
@@ -126,6 +127,17 @@ def drawPressKeyMsg():
     pressKeyRect = pressKeySurf.get_rect()
     pressKeyRect.topleft = (WINDOWWIDTH - 200, WINDOWHEIGHT - 30)
     DISPLAYSURF.blit(pressKeySurf, pressKeyRect)
+
+    
+def setDifficulty(): '''Program that sets how fast the Worm will move'''
+    Difficulty = raw_input("Hard, Medium, or Easy: ")
+    if Difficulty == "Hard":
+        FPS = 20
+    if Difficulty == "Medium":
+        FPS = 15
+    if Difficulty == 'Easy':
+        FPS = 10
+
 
 
 

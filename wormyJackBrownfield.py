@@ -8,7 +8,7 @@
 import random, pygame, sys
 from pygame.locals import *
 
-FPS = 10 #slows the worm down
+FPS = 20 #slows the worm down
 WINDOWWIDTH = 640
 WINDOWHEIGHT = 480
 CELLSIZE = 20
